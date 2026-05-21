@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HushMonkey</title>
+    <style>
+	
+		:root {
+			--txtoffset: 7vh;
+			--butoffset: 10vh;
+		}
+	
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden; /* fjerner scrollbars */
+        }
+
+        .container {
+            display: grid;
+            height: 100vh; /* fylder præcis skærmen */
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: 2fr 2fr 1fr;
+            gap: 5px;
+            background-color: white;
+        }
+
+        .main {
+            grid-column: 1 / 2;
+            grid-row: 1 / 3;
+            background-color: #3A843D;
+			display: grid;
+            grid-template-rows: 1fr 5fr 1fr;
+            gap: 5px;
+        }
+		
+		.main div {
+			display: flex;
+			align-items: center; /* lodret centrering */
+            justify-content: center; /* vandret centrering */
+		}
+
+        .side-top {
+            grid-column: 2 / 3;
+            grid-row: 1 / 2;
+			display: grid;
+            grid-template-rows: 1fr 5fr 1fr;
+            gap: 5px;
+            background-color: #3A843D;
+        }
+		
+		.side-top div {
+			display: flex;
+			align-items: center; /* lodret centrering */
+            justify-content: center; /* vandret centrering */
+		}
+
+        .side-bottom {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+			display: grid;
+            grid-template-rows: 1fr 5fr 1fr;
+            gap: 5px;
+            background-color: #3A843D;
+        }
+		
+		.side-bottom div {
+			display: flex;
+			align-items: center; /* lodret centrering */
+            justify-content: center; /* vandret centrering */
+		}
+
+        .bottom {
+            grid-column: 1 / 3;
+            grid-row: 3 / 4;
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr 2fr 1fr; /* kan justeres individuelt */
+            gap: 0px; /* ingen lodrette rammer */
+        }
+
+        .bottom div {
+            background-color: #661B73;
+			display: grid;
+            grid-template-rows: 1fr 1fr ;
+			gap: 0px;
+			align-items: center;
+			justify-content: center;
+        }
+		
+		.lafhead { 
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 5vmin, 1800px);
+			font-weight: 800;
+		}
+		
+		.laf { 
+			color: white;
+			font-family: verdana, sans-serif;
+			
+			font-size: clamp(40px, 22vmin, 1800px);
+			text-align: center;
+			font-stretch: expanded;
+			font-weight: 500;
+			letter-spacing: 2px;
+			transform: scaleX(0.8);
+			
+		}
+		
+		.lafsub { 
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 5vmin, 1800px);
+			font-weight: 500;
+		}
+		
+		.laeq1head { 
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 2vmin, 1800px);
+			font-weight: 800;
+		}
+		
+		.laeq1 { 
+			color: white;
+			font-family: verdana, sans-serif;
+			font-size: clamp(20px, 10vmin, 1800px);
+			text-align: center;
+			font-stretch: expanded;
+			font-weight: 500;
+			letter-spacing: 2px;
+			transform: scaleX(0.8);
+		}
+		
+		.laeq1sub { 
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 2vmin, 1800px);
+			font-weight: 500;
+		}
+		
+		.laeq10head { 
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 2vmin, 1800px);
+			font-weight: 800;
+		}
+		
+		.laeq10 { 
+			color: white;
+			font-family: verdana, sans-serif;
+			font-size: clamp(20px, 10vmin, 1800px);
+			text-align: center;
+			font-stretch: expanded;
+			font-weight: 500;
+			letter-spacing: 2px;
+			transform: scaleX(0.8);
+		}
+		
+		.laeq10sub { 
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 2vmin, 1800px);
+			font-weight: 500;
+		}
+		
+		.bot_head {
+			color: white;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 2vmin, 1800px);
+			font-weight: 800;			
+		}
+		
+		.bot_data {
+			color: yellow;
+			font-family: verdana, sans-serif;
+			text-align: center;
+			font-size: clamp(12px, 6vmin, 1800px);
+			font-weight: bolder;
+			font-stretch: expanded;
+			transform: scaleX(0.8);
+		}
+			
+		
+		.btn-2 {
+			color: #fff;
+			background-color: #6c757d;
+			border-color: #6c757d;
+			/*display: inline-block;*/
+			text-align: center;
+			text-decoration: none;
+			vertical-align: middle;
+			cursor: pointer;
+			user-select: none;
+			padding: 3px 25px;
+			font-size: clamp(12px, 3vmin, 1800px);
+			border-radius: .80rem;
+			border: none;
+			font-weight: bold;
+			letter-spacing: 1.2px;
+			font-family: verdana, sans-serif;
+		}
+
+		.btn-2:hover {
+			color: #fff;
+			background-color: #5c636a;
+		}
+
+		.btn-2:active {
+			box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.24);
+		}
+		
+		/* click feel */
+		button:active {
+			transform: scale(0.97);
+		}
+		.laf_limit {
+			color: white;
+			font-family: verdana, sans-serif;
+			font-size: clamp(8px, 2vmin, 1800px);
+			font-weight: 300;
+		}
+		
+		.laeq1_limit {
+			color: white;
+			font-family: verdana, sans-serif;
+			font-size: clamp(8px, 1vmin, 1800px);
+			font-weight: 300;
+		}
+		
+		.laeq10_limit {
+			color: white;
+			font-family: verdana, sans-serif;
+			font-size: clamp(8px, 1vmin, 1800px);
+			font-weight: 300;
+		}
+
+        /* ===== MODAL ===== */
+        #modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 9999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #modal-overlay.hidden {
+            display: none;
+        }
+
+        .modal-box {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            min-width: 40%;
+            max-width: 65%;
+            border: 3px solid black;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="modal-overlay" class="hidden">
+        <div class="modal-box">
+            <div id="modal-content"></div>
+            <div id="modal-buttons" class="modal-buttons"></div>
+        </div>
+    </div>
+
+    <div class="container">
+		<div class="main" id="boxmain">
+            <div><p class="lafhead">LAF</p><span class="laf_limit">(Limit:<span id="laflimitid">100</span>)</span></div>
+            <div><p class="laf"><span id="laf">89.02</span></p></div>
+            <div><p class="lafsub">dBA</p></div>
+        </div>
+        <div class="side-top">
+			<div><p class="laeq1head">LAeq 1 min</p><span class="laeq1_limit">(Limit:<span id="laeq1limitid">95</span>)</span></div>
+            <div><p class="laeq1"><span id="leq1">68.01</span></p></div>
+            <div><p class="laeq1sub">dBA</p></div>	
+		</div>
+        <div class="side-bottom">
+			<div><p class="laeq10head">LAeq 10 min</p><span class="laeq10_limit">(Limit:<span id="laeq10limitid">90</span>)</span></div>
+            <div><p class="laeq10"><span id="leq10">75.85</span></p></div>
+            <div><p class="laeq10sub">dBA</p></div>
+		</div>
+
+        <div class="bottom">
+            <div>
+				<div></div>
+				<div > 
+					<button  style="position: relative; bottom: var(--butoffset);" class="btn-2" role="button" onclick="toggle_fullscreen()">Toggle</br>Fullscreen</button>
+					<button  style="position: relative; bottom: var(--butoffset);" class="btn-2" role="button" onclick="location.href='/about'">About</button>
+				</div>
+				
+
+			</div>
+            <div id="divmax">
+				<div class="bot_head">LAF MAX</div>
+				<div class="bot_data"><span style="position: relative; bottom: var(--txtoffset);" id="maxlaf">103.25</span></div>
+			</div>
+            <div id ="div1"> 
+				<div class="bot_head">LAF MAX 1 min</div>
+				<div class="bot_data"><span style="position: relative; bottom: var(--txtoffset);" id="max1">98.22</span></div>
+				
+			</div>
+            <div id="div10">
+				<div class="bot_head">LAF MAX 10 min</div>
+				<div class="bot_data"><span style="position: relative; bottom: var(--txtoffset);" id="max10">96.33</span></div>
+				
+			</div>
+            <div>
+				<div></div>
+				<div>
+					<button style="position: relative; bottom: var(--butoffset);" class="btn-2" role="button" onclick="location.href='cal.html'">Calibrate</button> </br>
+					<button style="position: relative; bottom: var(--butoffset);" class="btn-2" role="button" onclick="location.href='limits.html'">Setup</button>
+				</div>
+				
+				
+			</div>
+        </div>
+    </div>
+	
+	<script>
+		const warn_red = "#aa0000";
+		const warn_yellow = "#BF7200";
+		const warn_green = "#3A843D";
+		const lilla = "#661B73";
+		const overlay = document.getElementById("modal-overlay");
+		const contentDiv = document.getElementById("modal-content");
+		const buttonsDiv = document.getElementById("modal-buttons");
+		const mod = document.getElementById("modal-box");
+		let warn_main = 0;
+		let warn_1 = 0;
+		let warn_10 = 0;
+		let alert_delay = 0;
+		let full = 0;
+
+		const mainDiv = document.querySelector(".main");
+		const laeq1Div = document.querySelector(".side-top");
+		const laeq10Div = document.querySelector(".side-bottom");
+
+		mainDiv.addEventListener("dblclick", () => resetMax());
+		laeq1Div.addEventListener("dblclick", () => reset1());
+		laeq10Div.addEventListener("dblclick", () => reset10());
+
+		// Close modal
+		function closeModal() {
+			overlay.classList.add("hidden");
+			document.removeEventListener("keydown", escHandler);
+		}
+
+		// ESC key
+		function escHandler(e) {
+			if (e.key === "Escape") closeModal();
+		}
+
+		// Click outside
+		overlay.addEventListener("click", (e) => {
+			if (e.target === overlay) closeModal();
+		});
+
+		// Generic MODAL
+		function showModal(content, buttons = [], bgColor = null, textColor = null) {
+			return new Promise((resolve) => {
+				contentDiv.innerHTML = content;
+				buttonsDiv.innerHTML = "";
+
+				const modalBox = document.querySelector(".modal-box");
+				if (typeof bgColor === "string" && /^#[0-9A-Fa-f]{6}$/.test(bgColor)) {
+					modalBox.style.background = bgColor;
+				} else {
+					modalBox.style.background = "white";
+				}
+
+				if (typeof textColor === "string" && /^#[0-9A-Fa-f]{6}$/.test(textColor)) {
+					modalBox.style.color = textColor;
+				} else {
+					modalBox.style.color = "black";
+				}
+
+				buttons.forEach(btn => {
+					const button = document.createElement("button");
+					button.textContent = btn.text;
+					button.onclick = () => {
+						closeModal();
+						resolve(btn.value);
+					};
+					buttonsDiv.appendChild(button);
+				});
+
+				overlay.classList.remove("hidden");
+				document.addEventListener("keydown", escHandler);
+			});
+		}
+
+		// ALERT
+		function customAlert(message, bgColor = null, textColor = null) {
+			return showModal(`<p>${message}</p>`, [
+				{ text: "OK", value: true }
+			], bgColor, textColor);
+		}
+
+		// CONFIRM
+		function customConfirm(message, bgColor = null, textColor = null) {
+			return showModal(`<p>${message}</p>`, [
+				{ text: "Cancel", value: false },
+				{ text: "OK", value: true }
+			], bgColor, textColor);
+		}
+
+		async function setRef() {
+			try {
+				const r = await fetch('/set_ref', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ value: 33 })
+				});
+				if (!r.ok) throw new Error(`POST failed: ${r.status}`);
+				const res = await fetch('/data');
+				if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+				const d = await res.json();
+				alert_delay = d.alert_delay;
+				warn_main = alert_delay;
+			} catch (err) {
+				console.error("Error in setRef:", err);
+			}
+		}
+
+		async function update() {
+			try {
+				const res = await fetch('/data');
+				if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+				const d = await res.json();
+				alert_delay = d.alert_delay;
+
+				document.getElementById("laf").innerText = d.LAF.toFixed(1);
+				document.getElementById("leq1").innerText = d.LAeq1m.toFixed(1);
+				document.getElementById("leq10").innerText = d.LAeq10m.toFixed(1);
+				document.getElementById("maxlaf").innerText = d.MAX_LAF.toFixed(1);
+				document.getElementById("max1").innerText = d.MAX_1M.toFixed(1);
+				document.getElementById("max10").innerText = d.MAX_10M.toFixed(1);
+				document.getElementById("laflimitid").innerText = d.LAF_limit.toFixed(1);
+				document.getElementById("laeq1limitid").innerText = d.LAeq1_limit.toFixed(1);
+				document.getElementById("laeq10limitid").innerText = d.LAeq10_limit.toFixed(1);
+
+				if (parseFloat(d.LAF.toFixed(1))     > parseFloat(d.LAF_limit.toFixed(1)))    { warn_main = alert_delay; } else { mainDiv.style.backgroundColor = warn_green; }
+				if (parseFloat(d.LAeq1m.toFixed(1))  > parseFloat(d.LAeq1_limit.toFixed(1)))  { warn_1 = alert_delay; }    else { laeq1Div.style.backgroundColor = warn_green; }
+				if (parseFloat(d.LAeq10m.toFixed(1)) > parseFloat(d.LAeq10_limit.toFixed(1))) { warn_10 = alert_delay; }   else { laeq10Div.style.backgroundColor = warn_green; }
+
+				warn_main = Math.max(warn_main - 1, 0);
+				mainDiv.style.backgroundColor = warn_main > 0 ? warn_red : warn_green;
+
+				warn_1 = Math.max(warn_1 - 1, 0);
+				laeq1Div.style.backgroundColor = warn_1 > 0 ? warn_red : warn_green;
+
+				warn_10 = Math.max(warn_10 - 1, 0);
+				laeq10Div.style.backgroundColor = warn_10 > 0 ? warn_red : warn_green;
+
+			} catch (err) {
+				console.error("Error in update:", err);
+			}
+		}
+
+		async function resetMax() {
+			try {
+				const r = await fetch('/resetmax', { method: 'POST' });
+				if (!r.ok) throw new Error(`POST failed: ${r.status}`);
+				mainDiv.style.backgroundColor = warn_yellow;
+			} catch (err) {
+				console.error("Error in resetMax:", err);
+			}
+		}
+
+		async function reset1() {
+			try {
+				const r = await fetch('/reset1');
+				if (!r.ok) throw new Error(`GET failed: ${r.status}`);
+				laeq1Div.style.backgroundColor = warn_yellow;
+			} catch (err) {
+				console.error("Error in reset1:", err);
+			}
+		}
+
+		async function reset10() {
+			try {
+				const r = await fetch('/reset10');
+				if (!r.ok) throw new Error(`GET failed: ${r.status}`);
+				laeq10Div.style.backgroundColor = warn_yellow;
+			} catch (err) {
+				console.error("Error in reset10:", err);
+			}
+		}
+
+		async function cfgstatus() {
+			try {
+				const res = await fetch('/cfgerr');
+				if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+				const d = await res.json();
+				let errmsg = "<span class='lafhead'>⚠️File error</span></br></br>";
+				if (d.cfgstatus == "1") {
+					errmsg += "<span class='laf_limit'>Could not load config - Using defaults!</br></span>";
+				}
+				if (d.limitstatus == "1") {
+					errmsg += "<span class='laf_limit'>Could not load limits - Using defaults!</br></span>";
+				}
+				if (d.cfgstatus + d.limitstatus != "00") {
+					customAlert(errmsg + "<span class='laf_limit'>Please calibrate/configure before use!</span>", warn_red, "#ffffff");
+				}
+			} catch (err) {
+				console.error("Error in cfgstatus:", err);
+			}
+		}
+
+		const elem = document.documentElement;
+
+		function openFullscreen() {
+			if (elem.requestFullscreen) {
+				elem.requestFullscreen();
+			} else if (elem.webkitRequestFullscreen) {
+				elem.webkitRequestFullscreen();
+			} else if (elem.msRequestFullscreen) {
+				elem.msRequestFullscreen();
+			}
+		}
+
+		function closeFullscreen() {
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.webkitExitFullscreen) {
+				document.webkitExitFullscreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+			}
+		}
+
+		function toggle_fullscreen() {
+			if (full === 0) { full = 1; openFullscreen(); }
+			else            { full = 0; closeFullscreen(); }
+		}
+
+		async function scheduleUpdate() {
+			await update();
+			setTimeout(scheduleUpdate, 300);
+		}
+
+		update();
+		cfgstatus();
+		scheduleUpdate();
+	</script>
+</body>
+</html>

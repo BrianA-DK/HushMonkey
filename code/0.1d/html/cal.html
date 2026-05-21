@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<title>Hush Monkey - Microphone calibration</title>
+
+<style>
+    body {
+        font-family: verdana, sans-serif;
+        background: #111;
+        color: #fff;
+        text-align: center;
+        padding-top: 50px;
+		margin: 0;
+		height: 100vh;
+		display: grid;
+		place-items: center; /* centrerer indhold */
+		background-color: #222;
+		
+    }
+	
+	.container {
+		display: grid;
+		width: 60vw; /* 80% af viewport width */
+		/*height: 95vh; /* valgfri højde */
+	  }
+	  
+
+	.frame {
+		border: 5px solid white;
+		background-color: #444;
+	}
+
+    h1 {
+        color: white;
+		font-family: verdana, sans-serif;
+		text-align: center;
+		font-size: clamp(20px, 5vmin, 1800px);
+		font-weight: 800;
+		margin-bottom: 4px;
+    }
+
+    #liveDb {
+        font-size: clamp(16px, 5vmin, 1800px);
+		font-weight: 500;
+        margin: 20px 0;
+        color: #00d4ff;
+        transition: 0.2s;
+    }
+
+    button {
+        display: block;
+        width: clamp(150px, 40vmin, 400px);
+        margin: 10px auto;
+        padding: 15px;
+        font-size: clamp(16px, 2vmin, 1800px);
+		font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #2c7be5;
+        color: white;
+        transition: 0.2s;
+    }
+	
+	/* click feel */
+	button:active {
+		transform: scale(0.97);
+	}
+
+    button:hover:not(:disabled) {
+        background: #1a5fc1;
+    }
+
+    button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    #ReturnBtn {
+        background: #e5533d;
+    }
+
+    #ReturnBtn:hover:not(:disabled) {
+        background: #c13d2b;
+    }
+
+    #SaveBtn {
+        background: #00a86b;
+    }
+
+    #SaveBtn:hover:not(:disabled) {
+        background: #007a4f;
+    }
+	
+	#RestartBtn {
+		display: inline-block;
+		width: clamp(50px, 9vmin, 450px);
+        margin: 1px auto;
+		margin-left: 1rem;
+        padding: 3px;
+        font-size: clamp(10px, 1.2vmin, 1800px);
+		font-weight: 600;
+        border: none;
+        border-radius: 3px;
+        background: #e5533d;
+    }
+
+    #RestartBtn:hover:not(:disabled) {
+	display: inline-block;
+		width: clamp(50px, 9vmin, 450px);
+        margin: 1px auto;
+		margin-left: 1rem;
+        padding: 3px;
+        font-size: clamp(10px, 1.2vmin, 1800px);
+		font-weight: 600;
+        border: none;
+        border-radius: 3px;
+        background: #c13d2b;
+    }
+
+    #status {
+        margin-top: 20px;
+        font-size: clamp(16px, 2vmin, 1800px);
+	font-weight: 600;
+        color: #aaa;
+    }
+
+   #devinfo {
+		display: inline-block;
+		margin-top: 0px;
+		font-size: clamp(12px, 2vmin, 1800px);
+      	font-weight: 200;
+        color: #aaa;
+    }
+
+
+    .cal-mode {
+        color: #00ff88 !important;
+    }
+
+    /* Progress bar */
+    #progressWrap {
+        width: clamp(150px, 40vmin, 400px);
+        margin: 16px auto;
+        background: #333;
+        border-radius: 8px;
+        overflow: hidden;
+        height: 3vh;
+        display: none;
+    }
+
+    #progressBar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #2c7be5, #00d4ff);
+        border-radius: 8px;
+        transition: width 0.2s linear;
+    }
+
+    #progressLabel {
+        font-size: clamp(12px, 2vmin, 1800px);
+		font-weight: 200;
+        color: #aaa;
+        margin-top: 5px;
+        display: none;
+    }
+	
+	/* ===== MODAL ===== */
+	#modal-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0,0,0,0.5);
+		z-index: 9999;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* FIX: skjul korrekt */
+	#modal-overlay.hidden {
+		display: none;
+	}
+
+	.modal-box {
+		background: white;
+		padding: 20px;
+		border-radius: 5px;
+		min-width: 40%;
+		max-width: 65%;
+		border: 3px solid black;
+	}
+
+	.modal-buttons {
+		margin-top: 20px;
+		display: flex;
+		justify-content: flex-end;
+		gap: 10px;
+	}
+	
+</style>
+</head>
+
+<body>
+	<div id="modal-overlay" class="hidden">
+        <div class="modal-box">
+            <div id="modal-content"></div>
+            <div id="modal-buttons" class="modal-buttons"></div>
+        </div>
+    </div>
+	
+	<div class="container"><div class="frame">
+	
+	<h1>Calibration</h1>
+	<div id="devinfo">
+		<span style="color:#fa7070; font-weight: 800;">🔇No input sounddevice </span>
+	</div>
+	<button id="RestartBtn" onclick="restart()">Restart app</button>
+	<div id="liveDb">--.- dB</div>
+
+	<button id="btn94"  onclick="runCalSequence(94)">Start 94 dB</button>
+	<button id="btn104" onclick="runCalSequence(104)">Start 104 dB</button>
+	<button id="btn114" onclick="runCalSequence(114)">Start 114 dB</button>
+
+	<p><button id="ReturnBtn"  onclick="GotoMain()" >Return to main page</button>
+	<button id="SaveBtn" onclick="SaveCal()" disabled>Save calibration</button></p>
+
+	<div id="progressWrap"><div id="progressBar"></div></div>
+	<div id="progressLabel">0.0 s remaining</div>
+
+	<div id="status">Status: Ready</div>
+	</br>
+	</div></div>
+
+	<script>
+		const overlay = document.getElementById("modal-overlay");
+		const contentDiv = document.getElementById("modal-content");
+		const buttonsDiv = document.getElementById("modal-buttons");
+		const mod = document.getElementById("modal-box");
+		const CAL_WAIT_SECONDS = 5;
+		let running = false;
+		let progressInterval = null;
+		let saved = true;
+		
+		// Close MODAL
+		function closeModal() {
+			overlay.classList.add("hidden");
+			document.removeEventListener("keydown", escHandler);
+		}
+
+		// ESC key
+		function escHandler(e) {
+			if (e.key === "Escape") {
+				closeModal();
+			}
+		}
+
+		// Click outside
+		overlay.addEventListener("click", (e) => {
+			if (e.target === overlay) {
+				closeModal();
+			}
+		});
+
+		// Generic MODAL
+		function showModal(content, buttons = [], bgColor = null, textColor = null) {
+			return new Promise((resolve) => {
+				contentDiv.innerHTML = content;
+				buttonsDiv.innerHTML = "";
+				
+				const modalBox = document.querySelector(".modal-box");
+				// Baggrund
+				if (typeof bgColor === "string" && /^#[0-9A-Fa-f]{6}$/.test(bgColor)) {
+					modalBox.style.background = bgColor;
+				} else {
+					modalBox.style.background = "white";
+				}
+
+				// Tekstfarve
+				if (typeof textColor === "string" && /^#[0-9A-Fa-f]{6}$/.test(textColor)) {
+					modalBox.style.color = textColor;
+				} else {
+					modalBox.style.color = "black";
+				}
+
+				buttons.forEach(btn => {
+					const button = document.createElement("button");
+					button.textContent = btn.text;
+
+					button.onclick = () => {
+						closeModal();
+						resolve(btn.value);
+					};
+
+					buttonsDiv.appendChild(button);
+				});
+
+				overlay.classList.remove("hidden");
+				document.addEventListener("keydown", escHandler);
+			});
+		}
+
+		// ALERT
+		function customAlert(message, bgColor = null, textColor = null) {
+			return showModal(`<p>${message}</p>`, [
+				{ text: "OK", value: true }
+			], bgColor, textColor);
+		}
+
+		// CONFIRM
+		function customConfirm(message, bgColor = null, textColor = null) {
+			return showModal(`<p>${message}</p>`, [
+				{ text: "Cancel", value: false },
+				{ text: "OK", value: true }
+			], bgColor, textColor);
+		}  
+
+		function setStatus(text) {
+			document.getElementById("status").innerText = "Status: " + text;
+		}
+
+		function setButtonsDisabled(disabled) {
+			["btn94", "btn104", "btn114", "SaveBtn", "ReturnBtn"].forEach(id => {
+				document.getElementById(id).disabled = disabled;
+			});
+		}
+
+		function showProgress(show) {
+			document.getElementById("progressWrap").style.display = show ? "block" : "none";
+			document.getElementById("progressLabel").style.display = show ? "block" : "none";
+		}
+
+		function startProgress(durationMs, onComplete) {
+			const bar = document.getElementById("progressBar");
+			const label = document.getElementById("progressLabel");
+			const start = performance.now();
+
+			showProgress(true);
+			bar.style.width = "0%";
+
+			clearInterval(progressInterval);
+			progressInterval = setInterval(() => {
+				const elapsed = performance.now() - start;
+				const fraction = Math.min(elapsed / durationMs, 1);
+				const remaining = Math.max((durationMs - elapsed) / 1000, 0);
+
+				bar.style.width = (fraction * 100).toFixed(1) + "%";
+				label.innerText = remaining.toFixed(1) + " s remaining";
+
+				if (fraction >= 1) {
+					clearInterval(progressInterval);
+					bar.style.width = "100%";
+					label.innerText = "0.0 s remaining";
+					onComplete();
+				}
+			}, 100);
+		}
+
+		// Auto sequence: startCal > wait > stopCal > applyCal 
+		async function runCalSequence(db) {
+			saved = false;
+			setButtonsDisabled(true);
+			setStatus("Starting calibration at " + db + " dB...");
+
+			try {
+				await startCal(db);
+				setStatus("Measuring at " + db + " dB...");
+
+				await new Promise(resolve => startProgress(CAL_WAIT_SECONDS * 1000, resolve));
+
+				await stopCal();
+				await applyCal();
+
+				showProgress(true);
+				setButtonsDisabled(false);
+			} catch (err) {
+				console.error("Error in runCalSequence:", err);
+				setButtonsDisabled(false);
+				showProgress(false);
+			}
+		}
+
+		async function startCal(db) {
+			try {
+				const r = await fetch("/calibrate/start", {
+					method: "POST",
+					headers: {"Content-Type": "application/json"},
+					body: JSON.stringify({db: db})
+				});
+				if (!r.ok) throw new Error(`POST failed: ${r.status}`);
+				await r.json();
+				running = true;
+			} catch (err) {
+				console.error("Error in startCal:", err);
+				setStatus("Error at start");
+				showProgress(true);
+				setButtonsDisabled(false);
+				throw err;
+			}
+		}
+
+		async function stopCal() {
+			try {
+				const r = await fetch("/calibrate/stop", { method: "POST" });
+				if (!r.ok) throw new Error(`POST failed: ${r.status}`);
+				await r.json();
+				running = false;
+				setStatus("Measurement stored.");
+			} catch (err) {
+				console.error("Error in stopCal:", err);
+				setStatus("Error stopCal");
+				throw err;
+			}
+		}
+
+		async function applyCal() {
+			try {
+				const r = await fetch("/calibrate/apply", { method: "POST" });
+				if (!r.ok) throw new Error(`POST failed: ${r.status}`);
+				const d = await r.json();
+				setStatus("Calibration applied. REF = " + d.REF);
+			} catch (err) {
+				console.error("Error in applyCal:", err);
+				setStatus("Error at apply");
+				throw err;
+			}
+		}
+
+		async function SaveCal() {
+			try {
+				const res = await fetch('/savecfg');
+				if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+				const d = await res.json();
+				setStatus("Saved:" + d.success + " / " + d.message);
+				saved = true;
+			} catch (err) {
+				console.error("Error in SaveCal:", err);
+				setStatus("Error saving calibration");
+			}
+		}
+
+		async function cfgstatus() {
+			try {
+				const res = await fetch('/cfgerr');
+				if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+				const d = await res.json();
+				let errmsg = "<span class='lafhead'>⚠️File error</span></br></br>";
+				if (d.cfgstatus == "1") {
+					errmsg += "<span class='laf_limit'>Could not load config - Using defaults!</br></span>";
+				}
+				if (d.limitstatus == "1") {
+					errmsg += "<span class='laf_limit'>Could not load limits - Using defaults!</br></span>";
+				}
+				if (d.cfgstatus + d.limitstatus != "00") {
+					customAlert(errmsg + "<span class='laf_limit'>Please calibrate/configure before use!</span>", warn_red, "#ffffff");
+				}
+			} catch (err) {
+				console.error("Error in cfgstatus:", err);
+			}
+		}
+
+		async function DevInfo () {
+                        try {
+                                const res = await fetch('/device');
+                                if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+                                const d = await res.json();
+				document.getElementById("devinfo").innerText = "Device: " + d.name;
+                        } catch (err) {
+                                console.error("Error in cfgstatus:", err);
+                        }
+		}
+
+		async function GotoMain() {
+			if (saved == true) {
+				window.location.href = "/";
+			} else {
+				const txt = "<h1>⚠️Calibration not saved</h1></br></br>You are about to leave without saving this calibration?";
+				const answ = await showModal(`<p>${txt}</p>`, [
+					{ text: "Discard and goto main page", value: false },
+					{ text: "Cancel", value: true }
+				], "#aa0000", "#ffffff");
+
+				if (answ !== true) {
+					window.location.href = "/";
+				}
+			}
+		}
+		
+		async function restart() {
+			try {
+				const answ = await customConfirm("<h1>🙊 Restart HushMonkey?</h1><p>If no device is found or you have changed the hardware sice last restart,<br>please restart app. Make sure input-device is connected.</p>", "#aa0000", "#ffffff");
+				if (answ === true) {
+					const res = await fetch('/restart');
+					if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+					const d = await res.json();
+					console.log("Restart return: " + d.status);
+					window.location.href = "/restart.html";
+				}
+			} catch (err) {
+				console.error("Error in restart:", err);
+			}
+		}
+
+		async function updateLiveDb() {
+			try {
+				const r = await fetch("/data");
+				if (!r.ok) throw new Error(`GET failed: ${r.status}`);
+				const data = await r.json();
+				const db = data.LAF || 0;
+				document.getElementById("liveDb").innerText = db.toFixed(1) + " dB";
+
+				if (running) {
+					document.getElementById("liveDb").classList.add("cal-mode");
+					document.getElementById("liveDb").style.color = db > 90 ? "#00ff88" : "#ffaa00";
+				} else {
+					document.getElementById("liveDb").classList.remove("cal-mode");
+					document.getElementById("liveDb").style.color = "#00d4ff";
+				}
+			} catch (err) {
+				console.error("Error in updateLiveDb:", err);
+			}
+		}
+		
+		async function scheduleLiveDb() {
+			await updateLiveDb();
+			setTimeout(scheduleLiveDb, 200);
+		}
+		DevInfo();
+		showProgress(true);
+		scheduleLiveDb();
+	</script>
+	</body>
+</html>
