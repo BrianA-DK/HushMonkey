@@ -1,0 +1,32 @@
+
+[Unit]
+Description=Python wrapper service (main.py supervisor)
+After=network.target
+
+[Service]
+Type=simple
+
+# Kør som din bruger
+User=hush
+WorkingDirectory=/home/hush/HushMonkey
+
+# Start wrapper
+ExecStart=/home/hush/HushMonkey/wrapper.sh
+
+# Sørg for korrekt miljø (meget vigtigt for sudo og python)
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Logging til journalctl
+StandardOutput=journal
+StandardError=journal
+
+# Sørg for pæn stop-opførsel
+KillMode=process
+TimeoutStopSec=30
+
+# Undgå dobbelt-restart (dit script håndterer det selv)
+Restart=no
+
+[Install]
+WantedBy=multi-user.target
+

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<title>Hush Monkey - About</title>
+
+<style>
+    body {
+		font-family: verdana, sans-serif;
+		background: #111;
+		color: #fff;
+		text-align: center;
+		padding-top: 50px;
+		margin: 0;
+		height: 100vh;
+
+		/* NY korrekt centreringsmetode */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		background-color: #222;
+	}
+	
+	.container {
+		display: block;
+		width: 60vw; /* 80% af viewport width */
+		/*height: 95vh; /* valgfri højde */
+		position: relative;
+		z-index: 0;
+	  }
+	  
+
+	.frame {
+		border: 5px solid white;
+		background-color: #444;
+		padding: 30px 20px; /* top/bund, venstre/højre */
+		border-radius: 0px;
+		position: relative;
+		z-index: 1;
+	}
+
+    h1 {
+        color: white;
+		font-family: verdana, sans-serif;
+		text-align: center;
+		font-size: clamp(14px, 3vmin, 1800px);
+		font-weight: 500;
+    }
+	
+	h2 {
+        color: white;
+		font-family: verdana, sans-serif;
+		text-align: center;
+		font-size: clamp(10px, 2vmin, 1800px);
+		font-weight: 100;
+    }
+	.top {
+        color: white;
+		font-family: verdana, sans-serif;
+		text-align: center;
+		font-size: clamp(8px, 1vmin, 1800px);
+		font-weight: 100;
+    }
+
+    img {
+		display: block;
+		margin: 5px auto 0px auto;
+		width: 40vmin;
+		height: auto;
+		border-radius: 12px;
+		border: 2px solid #fff;
+
+		opacity: 0;
+		animation-name: fadeInUp;
+		animation-duration: 0.8s;
+		animation-fill-mode: forwards;
+	}
+
+    button {
+        display: block;
+        width: clamp(150px, 40vmin, 400px);
+        margin: 30px auto 0 auto; /* 30px luft over knappen */
+        padding: 15px;
+        font-size: clamp(16px, 2vmin, 1800px);
+		font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: #2c7be5;
+        color: white;
+        transition: 0.2s;
+		opacity: 0;
+		animation: fadeInDown 0.8s ease-out forwards;
+		animation-delay: 0.15s; /* lille forsinkelse for ekstra elegance */
+    }
+
+    button:hover:not(:disabled) {
+        background: #1a5fc1;
+    }
+
+    button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    #ReturnBtn {
+        background: #e5533d;
+    }
+
+    #ReturnBtn:hover:not(:disabled) {
+        background: #c13d2b;
+    }
+	
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(10px); /* starter 10px nede */
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	
+	
+	@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* starter 10px oppe */
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+
+	.banana {
+		position: fixed;
+		top: -50px;
+		pointer-events: none;
+		animation: fallBounce 4.8s cubic-bezier(.25,.75,.5,1.15) forwards;
+		z-index: 5000;
+	}
+
+	@keyframes fallBounce {
+			0% {
+				transform: translateY(-50px) rotate(0deg);
+				opacity: 1;
+			}
+
+			65% {
+				transform: translateY(100vh) rotate(260deg);
+				opacity: 1;
+			}
+
+			75% {
+				transform: translateY(calc(100vh - 20px)) rotate(300deg);
+			}
+
+			82% {
+				transform: translateY(calc(100vh - 10px)) rotate(330deg);
+			}
+
+			88% {
+				transform: translateY(calc(100vh - 5px)) rotate(350deg);
+			}
+
+			100% {
+				transform: translateY(110vh) rotate(360deg);
+				opacity: 0;
+			}
+		}
+
+		/* STOR, BLØD, GRADIENT SHOCKWAVE */
+		.shockwave {
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			width: 120px;
+			height: 120px;
+			border-radius: 50%;
+			transform: translate(-50%, -50%) scale(0);
+			pointer-events: none;
+			z-index: 9999;
+
+			background: radial-gradient(
+				circle at 30% 40%, /* asymmetrisk center */
+				rgba(255, 255, 0, 0.7) 0%,
+				rgba(255, 120, 0, 0.4) 50%,
+				rgba(255, 0, 0, 0) 100%
+			);
+
+			animation: shock 0.9s ease-out forwards;
+		}
+
+		.shockwave.alt {
+			background: radial-gradient(
+				circle at 70% 30%, /* asymmetrisk center */
+				rgba(0, 200, 255, 0.7) 0%,
+				rgba(0, 120, 255, 0.4) 50%,
+				rgba(0, 0, 255, 0) 100%
+			);
+		}
+
+		@keyframes shock {
+			0% {
+				transform: translate(-50%, -50%) scale(0) rotate(0deg);
+				opacity: 1;
+			}
+			60% {
+				transform: translate(-50%, -50%) scale(12) rotate(180deg);
+				opacity: 0.6;
+			}
+			100% {
+				transform: translate(-50%, -50%) scale(18) rotate(360deg);
+				opacity: 0;
+			}
+		}
+		
+		@keyframes shake {
+			0% { transform: translate(0, 0) rotate(0deg); }
+			20% { transform: translate(-5px, 3px) rotate(-2deg); }
+			40% { transform: translate(5px, -3px) rotate(2deg); }
+			60% { transform: translate(-4px, 2px) rotate(-1deg); }
+			80% { transform: translate(4px, -2px) rotate(1deg); }
+			100% { transform: translate(0, 0) rotate(0deg); }
+		}
+
+		.shake {
+			animation: fadeInUp 0.8s forwards, shake 0.4s ease-in-out;
+			animation-composition: add;
+		}
+		
+		/* SCREEN FLASH */
+		.flash {
+			position: fixed;
+			inset: 0;
+			background: white;
+			opacity: 0;
+			pointer-events: none;
+			z-index: 20000;
+			animation: flashAnim 0.25s ease-out forwards;
+		}
+
+		@keyframes flashAnim {
+			0% { opacity: 0.4; }
+			100% { opacity: 0; }
+		}
+
+
+		@keyframes glitchAnim {
+			0% { filter: drop-shadow(3px 0 red) drop-shadow(-3px 0 cyan); }
+			100% { filter: none; }
+		}
+
+		/* PARTICLE SPARKS */
+		.spark {
+			position: fixed;
+			width: 6px;
+			height: 6px;
+			background: radial-gradient(circle, white, yellow);
+			border-radius: 50%;
+			pointer-events: none;
+			z-index: 15000;
+			animation: sparkAnim 0.6s ease-out forwards;
+		}
+
+		@keyframes sparkAnim {
+			0% { opacity: 1; transform: translate(0,0) scale(1); }
+			100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.1); }
+		}
+
+		/* SCREEN SHAKE */
+		@keyframes screenShake {
+			0% { transform: translate(0,0); }
+			25% { transform: translate(4px, -4px); }
+			50% { transform: translate(-4px, 4px); }
+			75% { transform: translate(3px, -3px); }
+			100% { transform: translate(0,0); }
+		}
+
+		.shake-screen {
+			animation: screenShake 0.25s ease-out;
+		}
+
+
+		/* PURPLE SHOCKWAVE */
+		.shockwave.purple {
+			background: radial-gradient(
+				circle at 50% 50%,
+				rgba(200, 0, 255, 0.7) 0%,
+				rgba(120, 0, 255, 0.4) 50%,
+				rgba(0, 0, 0, 0) 100%
+			);
+		}
+
+		.logo-tilt {
+			transform: rotate(-29deg);
+			transition: transform 0.25s ease-out;
+		}
+		
+		.logo-bounce {
+			animation: logoBounce 0.35s ease-out;
+		}
+
+		@keyframes logoBounce {
+			0%   { transform: rotate(-12deg) scale(1); }
+			40%  { transform: rotate(4deg) scale(1.05); }
+			70%  { transform: rotate(-2deg) scale(0.98); }
+			100% { transform: rotate(0deg) scale(1); }
+		}
+
+
+</style>
+</head>
+
+<body>
+	
+	<div class="container"><div class="frame">
+	<span class ="top" id="spank">Don't spank the monkey...</span>
+	<img src="logo.webp" onclick="bananaStorm()" alt="HushMonkey - Every banana counts when the jungle gets loud">
+	<span class ="top" id="vers">x</span>
+	<h1>© 2026 Brian J. Andersen</h1>
+	<h2>Licensed under<br>GNU General Public License v3.0 (GPLv3)</h2>
+
+	<button id="ReturnBtn"  onclick="GotoMain()" >Return to main page</button>
+
+	</div></div>
+
+	<script>
+		let bananaInterval = null;
+		let stormCount = 0;
+		let activeSparks = 0;
+		 
+
+
+		async function GotoMain() {
+			window.location.href = "/";
+		}
+		
+		function spawnBanana() {
+			const banana = document.createElement("div");
+			banana.classList.add("banana");
+
+			// banana emoji:
+			banana.textContent = "🍌";
+
+			// random startposition
+			banana.style.left = Math.random() * 100 + "vw";
+
+			// random size
+			banana.style.fontSize = (20 + Math.random() * 20) + "px";
+
+			document.body.appendChild(banana);
+
+			// remove after animation
+			setTimeout(() => banana.remove(), 3000);
+		}
+
+		function GoBananas() {
+			// avoid doubble-start
+			if (bananaInterval !== null) return;
+
+			bananaInterval = setInterval(spawnBanana, 200);
+
+			// Stop after 5 sec
+			setTimeout(stopBananas, 5000);
+		}
+		
+		function stopBananas() {
+			clearInterval(bananaInterval);
+			bananaInterval = null;
+		}
+				
+		function bananaStorm() {
+			stormCount++;
+
+			// every 3. click = MEGA STORM
+			if (stormCount % 3 === 0) {
+				document.getElementById("spank").innerText = "RUMBLE IN THE JUNGLE!";
+				megaStorm();
+				stormCount = 0;
+				return;
+			}
+			if (stormCount == 1) { document.getElementById("spank").innerText = "Hey, don't do that!";}
+			if (stormCount == 2) { document.getElementById("spank").innerText = "Hey, stop it!";}
+			
+
+			// Normal storm
+			const logo = document.querySelector("img");
+			logo.classList.add("shake");
+			setTimeout(() => logo.classList.remove("shake"), 400);
+
+			createShockwave();
+			setTimeout(() => createShockwave(true), 150);
+
+			for (let i = 0; i < 50; i++) {
+				setTimeout(spawnBanana, i * 10);
+			}
+		}
+
+		function megaStorm() {
+			const logo = document.querySelector("img");
+
+			// Logo shake + tile
+			logo.classList.add("shake");
+			logo.classList.add("logo-tilt");
+
+			setTimeout(() => logo.classList.remove("shake"), 400);
+
+			// Screen flash
+			createFlash();
+
+			// Triple shockwave
+			createShockwave();                     // yellow
+			setTimeout(() => createShockwave(true), 120); // blue
+			setTimeout(() => createShockwavePurple(), 240); // purple
+
+			// Sparks
+			for (let i = 0; i < 200; i++) {
+				setTimeout(createSpark, i * 10);
+			}
+
+			// Screen shake
+			document.body.classList.add("shake-screen");
+			setTimeout(() => document.body.classList.remove("shake-screen"), 250);
+
+			// Hyper banana storm
+			for (let i = 0; i < 100; i++) {
+				setTimeout(spawnBanana, i * 10);
+			}
+		}
+
+		function createFlash() {
+			const f = document.createElement("div");
+			f.classList.add("flash");
+			document.body.prepend(f);
+			setTimeout(() => f.remove(), 300);
+		}
+
+		function createShockwavePurple() {
+			const wave = document.createElement("div");
+			wave.classList.add("shockwave", "purple");
+			document.body.prepend(wave);
+			setTimeout(() => wave.remove(), 900);
+		}
+
+		function createSpark() {
+			const s = document.createElement("div");
+			s.classList.add("spark");
+
+			activeSparks++; // spark er startet
+
+			const angle = Math.random() * Math.PI * 2;
+			const dist = 200 + Math.random() * 300;
+
+			s.style.setProperty("--dx", Math.cos(angle) * dist + "px");
+			s.style.setProperty("--dy", Math.sin(angle) * dist + "px");
+
+			s.style.left = "50%";
+			s.style.top = "50%";
+
+			document.body.prepend(s);
+
+			// when spark faides > count down
+			setTimeout(() => {
+				s.remove();
+				activeSparks--;
+
+				if (activeSparks === 0) {
+					const logo = document.querySelector("img");
+
+					// remove tilt
+					logo.classList.remove("logo-tilt");
+
+					// add bounce
+					logo.classList.add("logo-bounce");
+
+					// remove bounce-class after animation
+					setTimeout(() => logo.classList.remove("logo-bounce"), 400);
+					document.getElementById("spank").innerText = "Do NOT do that again!";
+				}
+			}, 200);
+
+		}
+	
+		function createShockwave(isAlt = false) {
+			const wave = document.createElement("div");
+			wave.classList.add("shockwave");
+			if (isAlt) wave.classList.add("alt");
+			document.body.prepend(wave);   
+			setTimeout(() => wave.remove(), 900);
+		}
+
+		async function GetVers() {
+			try {
+				const res = await fetch('/vers');
+				if (!res.ok) throw new Error(`GET failed: ${res.status}`);
+				const d = await res.json();
+				document.getElementById("vers").innerText = d.vers;
+				console.log("Version return: " + d.vers);
+				}
+			catch (err) {
+				console.error("Error getting version info:", err);
+			}
+		}
+
+		GetVers();
+		GoBananas();
+	</script>
+
+	</body>
+</html>
