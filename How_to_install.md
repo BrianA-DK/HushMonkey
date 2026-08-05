@@ -1,19 +1,19 @@
 Prerequisites:
 ==============
 
-	- A Raspberry Pi with Raspberry Pi OS installed and networking & SSH configured and connected to the internet* (*internet only required for downloading dependencies during install)
-	- Make sure your Pi OS is updated.
-	- Make sure to use a 2.5A powersupply (or better) to make sure you have enough power for the sound interface.
-	- A USB sound interface that suits you needs (I have tested with a Focusrite Solo and a Behringer U-Phoria UMC22)
-	- A measurement microphone (I'm using a Superlux ECM-999 condenser microphone - cheap and works well)
-	- A sound pressure calibrator to calibrate HushMonkey to the microphone (I'm using a Digital Sound 8930B)
-	
-	(If you have the Pi, and a microphone-cable, then interface, mic and calibrator should cost about 1200 Kr / 160 EUR / 190 USD @ Thomann)
+- A Raspberry Pi with Raspberry Pi OS installed and networking & SSH configured and connected to the internet* (*internet only required for downloading dependencies during install)
+- Make sure your Pi OS is updated.
+- Make sure to use a 2.5A powersupply (or better) to make sure you have enough power for the sound interface.
+- A USB sound interface that suits you needs (I have tested with a Focusrite Solo and a Behringer U-Phoria UMC22)
+- A measurement microphone (I'm using a Superlux ECM-999 condenser microphone - cheap and works well)
+- A sound pressure calibrator to calibrate HushMonkey to the microphone (I'm using a Digital Sound 8930B)
+
+(If you have the Pi, and a microphone-cable, then interface, mic and calibrator should cost about 1200 Kr / 160 EUR / 190 USD @ Thomann)
 
 How to install:
 ===============
 
-1.	Create the user "hush" (can be setup during install of Raspberry Pi OS)
+1.	Create the user `hush` (can be setup during install of Raspberry Pi OS)
 	Login to the Pi with the hush-user.
 
 2.	Make a dir for HushMonkey and enter the dir
@@ -53,14 +53,14 @@ How to install:
 
 7.	HushMonkey is set to start on reboot, so reboot your Pi to verify that every thing works.
 
-8.	If a LED is connected to GPIO17 you should see the following pattern : (  GPIO17 o---##R##------>led|---o GND  )
+8.	If a LED is connected to GPIO17 you should see the following pattern : (`GPIO17 o---[Resistor]----->LED|---o GND`)
 
-	State				Pattern
-	-------------------------------------------------
-	All good			Slow single blink
-	HushMonkey down, USB audio OK	Fast single blink 
-	HushMonkey OK, no USB audio	Slow double-blink
-	HushMonkey down + no USB audio	Fast double-blink
+| State | Pattern |
+| :--- | :--- |
+| **All good** | Slow single blink |
+| **HushMonkey down, USB audio OK** | Fast single blink |
+| **HushMonkey OK, no USB audio** | Slow double-blink |
+| **HushMonkey down + no USB audio** | Fast double-blink |
 
 Calibration: v0.2 and below
 ============================
