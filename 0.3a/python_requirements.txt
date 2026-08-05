@@ -1,8 +1,0 @@
-flask
-numpy
-sounddevice
-scipy
-flask-socketio
-gevent
-gevent-websocket
-gunicorn
