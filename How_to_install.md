@@ -1,5 +1,5 @@
 Prerequisites:
-================
+==============
 
 	- A Raspberry Pi with Raspberry Pi OS installed and networking & SSH configured and connected to the internet* (*internet only required for downloading dependencies during install)
 	- Make sure your Pi OS is updated.
@@ -11,31 +11,39 @@ Prerequisites:
 	(If you have the Pi, and a microphone-cable, then interface, mic and calibrator should cost about 1200 Kr / 160 EUR / 190 USD @ Thomann)
 
 How to install:
-================
+===============
 
 1.	Create the user "hush" (can be setup during install of Raspberry Pi OS)
 	Login to the Pi with the hush-user.
 
 2.	Make a dir for HushMonkey and enter the dir
+	```bash
 	hush@hush:~ $ cd ~
 	hush@hush:~ $ mkdir HushMonkey
 	hush@hush:~ $ cd HushMonkey
+	```
 	
 3.	Copy the version you want to install to HushMonkey/  (ie. 0.1d)
+	```bash
 	hush@hush:~/HushMonkey $ ls -la
 	total 24
 	drwxrwxr-x  3 hush hush 4096 May  9 16:01 .
 	drwx------ 14 hush hush 4096 May  9 15:59 ..
 	drwxrwxr-x  3 hush hush 4096 May  9 16:01 0.1d
+	```
 
 3b.	Copy install.sh to Hushmonkey/
 	hush@hush:~/HushMonkey $ 
 
 4.	Make sure install.sh is executable.
+	```bash
 	hush@hush:~/HushMonkey $ chmod +x install.sh
+	```
 	
 5.	Run installer. Replace 0.1d with what ever version you want to install.
+	```bash
 	hush@hush:~/HushMonkey $ ./install.sh 0.1d
+	```
 	
 	First time installing, it will take a few minutes to install the venv-enviroment and the python denpendencies.
 	Next time takes only a few seconds unless new denpendencies needs to be downloaded.
@@ -93,23 +101,29 @@ Upgrading and Rollback:
 install.sh takes care of dependencies, deployment of software and creation of services.
 
 Usage:
+	```bash
 	./install.sh [version]       --> install/activate a version 
 	./install.sh --rollback      --> reactivate the previously active version
+	```
 
  After install/upgrade/rollback please reboot and refresh browser to make sure backend and frontend are running the same version
 
 Examples:
 
 - Install version, ie. 0.2b
+	```bash
 	hush@hush:~/HushMonkey $ ./install.sh 0.2b
 	hush@hush:~/HushMonkey $ sudo reboot
+	```
 
 - Upgrade to version ie. 0.3a
+	```bash
 	hush@hush:~/HushMonkey $ ./install.sh 0.3a
 	hush@hush:~/HushMonkey $ sudo reboot
+	```
 
 - Rollback to previous version
+	```bash
 	hush@hush:~/HushMonkey $ ./install.sh --rollback
 	hush@hush:~/HushMonkey $ sudo reboot
-
-
+	```
