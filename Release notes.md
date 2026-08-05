@@ -26,6 +26,17 @@ Welcome to the changelog. Below is an overview of all releases and updates organ
 * **Time to Limit Prediction:** Calculates how long the current sound level can be maintained before breaching the `LAeq10` limit.
 * **Delay & Phase Analysis:** Added delay and phase measurement capabilities, along with a built-in **Pink Noise Generator**.
 
+#### Hushbeat (Status LED on GPIO17)
+`hushbeat.sh` (Heartbeat LED showing status on GPIO17):
+`GPIO17 o---[Resistor]----->LED|---o GND`
+
+| State | Pattern |
+| :--- | :--- |
+| **All good** | Slow single blink |
+| **HushMonkey down, USB audio OK** | Fast single blink |
+| **HushMonkey OK, no USB audio** | Slow double-blink |
+| **HushMonkey down + no USB audio** | Fast double-blink |
+
 ---
 
 ## 🙉 0.2 Series (Chill Chimpanzee – Lightweight)
