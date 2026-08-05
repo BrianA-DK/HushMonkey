@@ -1,0 +1,9 @@
+[
+  { "head": "🎸 Rock curve", "info":"Punchy lows, strong low‑mids, softened highs" },
+  { "freq": 20, "db": 6.0 },
+  { "freq": 60, "db": 6.0 },
+  { "freq": 200, "db": 3.0 },
+  { "freq": 1000, "db": 0.0 },
+  { "freq": 10000, "db": -2.0 },
+  { "freq": 20000, "db": -4.0 }
+]

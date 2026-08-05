@@ -1,0 +1,11 @@
+[
+  { "head": "🗣️ Corporate / Speech Curve", "info":"Speak is clear, understandable with minimal coloration" },
+  { "freq": 20, "db": -4.0 },
+  { "freq": 60, "db": -2.0 },
+  { "freq": 200, "db": -1.0 },
+  { "freq": 1000, "db": 0.0 },
+  { "freq": 3000, "db": 3.0 },
+  { "freq": 6000, "db": 1.0 },
+  { "freq": 12000, "db": -1.0 },
+  { "freq": 20000, "db": -2.0 }
+]

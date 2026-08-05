@@ -1,0 +1,10 @@
+[
+  { "head": "🎷 Jazz Curve", "info":"Warm lows, natural mids, smooth highs" },
+  { "freq": 20, "db": 3.0 },
+  { "freq": 60, "db": 3.0 },
+  { "freq": 200, "db": 2.0 },
+  { "freq": 1000, "db": 1.0 },
+  { "freq": 4000, "db": -1.0 },
+  { "freq": 10000, "db": -2.0 },
+  { "freq": 20000, "db": -3.0 }
+]
