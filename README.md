@@ -1,6 +1,6 @@
 # HushMonkey
 **There are 2 flavours of HushMonkey:**
-- 0.2: A lightweight version that solved my most basic needs to monotor LAF during shows. Minimalistic and straigt to the point.
+- 0.2: A lightweight version that solved my most basic needs to monitor LAF during shows. Minimalistic and straigt to the point.
 - 0.3: "Open Sound Meter and SMAART" in a browser, almost... 😉 Just the features you will need for 99% of the jobs where you setup a sound system.
 
 **Quick start:**\
