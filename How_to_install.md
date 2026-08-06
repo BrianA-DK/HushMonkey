@@ -54,7 +54,8 @@
 
 8.	HushMonkey is set to start on reboot, so reboot your Pi to verify that every thing works.
 
-9.	If a LED is connected to GPIO17 you should see the following pattern : (`GPIO17 o---[Resistor]----->LED|---o GND`)
+9.	If a LED is connected to GPIO17 you should see the following pattern : ( `GPIO17 o---[Resistor / R1]----->LED|---o GND` \
+Red/Green LED R1=100 Ω  /  Blue LED R1=24 Ω )
 
 | State | Pattern |
 | :--- | :--- |
