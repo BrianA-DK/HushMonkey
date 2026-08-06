@@ -1,5 +1,5 @@
-Prerequisites:
-==============
+## Prerequisites:
+
 
 - A Raspberry Pi with Raspberry Pi OS installed and networking & SSH configured and connected to the internet* (*internet only required for downloading dependencies during install)
 - Make sure your Pi OS is updated.
@@ -8,10 +8,9 @@ Prerequisites:
 - A measurement microphone (I'm using a Superlux ECM-999 condenser microphone - cheap and works well)
 - A sound pressure calibrator to calibrate HushMonkey to the microphone (I'm using a Digital Sound 8930B)
 
-(If you have the Pi, and a microphone-cable, then interface, mic and calibrator should cost about 1200 Kr / 160 EUR / 190 USD @ Thomann)
+> If you have the Pi, and a microphone-cable, then interface, mic and calibrator should cost about 1200 Kr / 160 EUR / 190 USD @ Thomann
 
-How to install:
-===============
+## How to install:
 
 1.	Create the user `hush` (can be setup during install of Raspberry Pi OS)
 	Login to the Pi with the hush-user.
@@ -32,15 +31,17 @@ How to install:
 	drwxrwxr-x  3 hush hush 4096 May  9 16:01 0.1d
 	```
 
-3b.	Copy install.sh to Hushmonkey/
-	hush@hush:~/HushMonkey $ 
+4.	Copy install.sh to Hushmonkey/
+	```bash
+ 	hush@hush:~/HushMonkey $
+ 	``` 
 
-4.	Make sure install.sh is executable.
+5.	Make sure install.sh is executable.
 	```bash
 	hush@hush:~/HushMonkey $ chmod +x install.sh
 	```
 	
-5.	Run installer. Replace 0.1d with what ever version you want to install.
+6.	Run installer. Replace 0.1d with what ever version you want to install.
 	```bash
 	hush@hush:~/HushMonkey $ ./install.sh 0.1d
 	```
@@ -49,11 +50,11 @@ How to install:
 	Next time takes only a few seconds unless new denpendencies needs to be downloaded.
 	During the install you will be prompted for password for the hush-user when sudo-rights is assigned.
 
-6.	HushMonkey should now be running and accessable on what ever IP-addr. you have assigned to your Pi.
+7.	HushMonkey should now be running and accessable on what ever IP-addr. you have assigned to your Pi.
 
-7.	HushMonkey is set to start on reboot, so reboot your Pi to verify that every thing works.
+8.	HushMonkey is set to start on reboot, so reboot your Pi to verify that every thing works.
 
-8.	If a LED is connected to GPIO17 you should see the following pattern : (`GPIO17 o---[Resistor]----->LED|---o GND`)
+9.	If a LED is connected to GPIO17 you should see the following pattern : (`GPIO17 o---[Resistor]----->LED|---o GND`)
 
 | State | Pattern |
 | :--- | :--- |
@@ -62,8 +63,7 @@ How to install:
 | **HushMonkey OK, no USB audio** | Slow double-blink |
 | **HushMonkey down + no USB audio** | Fast double-blink |
 
-Calibration: v0.2 and below
-============================
+## Calibration: v0.2 and below
 
 1.	Make sure HushMonky is running, USB-soundcard and microphone connected.
 
@@ -79,8 +79,7 @@ Calibration: v0.2 and below
 
 5.	You should now see the calibrated sound pressure on the main display.
 
-Calibration: v0.3 and above:
-=============================
+## Calibration: v0.3 and above:
 
 1.	Make sure HushMonky is running, USB-soundcard and microphone connected.
 
@@ -96,19 +95,17 @@ Calibration: v0.3 and above:
 
 5.	You should now see the calibrated sound pressure here as well as on the "LAF Meter"-tab
 
-Upgrading and Rollback:
-========================
+## Upgrading and Rollback:
+
 install.sh takes care of dependencies, deployment of software and creation of services.
 
-Usage:
-	```bash
-	./install.sh [version]       --> install/activate a version 
-	./install.sh --rollback      --> reactivate the previously active version
-	```
+#### Usage:
+	Install/activate a version  : ```./install.sh [version]```  
+	Reactivate the previously active version : ```./install.sh --rollback```
 
- After install/upgrade/rollback please reboot and refresh browser to make sure backend and frontend are running the same version
+ > **After install/upgrade/rollback please reboot and refresh browser to make sure backend and frontend are running the same version**
 
-Examples:
+#### Examples:
 
 - Install version, ie. 0.2b
 	```bash
