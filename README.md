@@ -14,6 +14,11 @@ Download `install.sh` and the folder with the version you want to use.
  After install/upgrade/rollback please reboot and refresh browser to make sure backend and frontend are running the same version
  Read the [How to install](/How_to_install.md) for a more indepth guide.
 
+## How to use ##
+Check out the [Cheat Sheets](https://github.com/BrianA-DK/HushMonkey/tree/main/Cheat%20Sheets) to get started on using Hush Monkey when setting up your PA.
+
+**Hidden trick: On the LAF-view. Double-click inside each of the 3 LAF-fields to reset Max-value.**\
+
 ## Functions ##
 
 ### Grumpy Gorilla-series (0.3): ###
