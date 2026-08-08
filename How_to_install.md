@@ -22,26 +22,28 @@
 	hush@hush:~ $ cd HushMonkey
 	```
 	
-3.	Copy the version you want to install to HushMonkey/  (ie. 0.1d)
+3.	Download the version you want from /Releases on GitHub and udzip it into HushMonkey/  (ie. 0.1d)\
+    together with install.sh
 	```bash
 	hush@hush:~/HushMonkey $ ls -la
 	total 24
 	drwxrwxr-x  3 hush hush 4096 May  9 16:01 .
 	drwx------ 14 hush hush 4096 May  9 15:59 ..
 	drwxrwxr-x  3 hush hush 4096 May  9 16:01 0.1d
+ 	-rw-rw-rw- 63 hush hush 4096 May  9 install.sh
 	```
 
-4.	Copy install.sh to Hushmonkey/
+5.	Copy install.sh to Hushmonkey/
 	```bash
  	hush@hush:~/HushMonkey $
  	``` 
 
-5.	Make sure install.sh is executable.
+6.	Make sure install.sh is executable.
 	```bash
 	hush@hush:~/HushMonkey $ chmod +x install.sh
 	```
 	
-6.	Run installer. Replace 0.1d with what ever version you want to install.
+7.	Run installer. Replace 0.1d with what ever version you want to install.
 	```bash
 	hush@hush:~/HushMonkey $ ./install.sh 0.1d
 	```
@@ -50,11 +52,19 @@
 	Next time takes only a few seconds unless new denpendencies needs to be downloaded.
 	During the install you will be prompted for password for the hush-user when sudo-rights is assigned.
 
-7.	HushMonkey should now be running and accessable on what ever IP-addr. you have assigned to your Pi.
+8.	HushMonkey should now be running and accessable on what ever IP-addr. you have assigned to your Pi.
 
-8.	HushMonkey is set to start on reboot, so reboot your Pi to verify that every thing works.
+ \
+ \
+$\color{Orange}\Huge{\textbf{No internet access needed beyond this point}}$ \
+ \
+ <br/>
+ 
 
-9.	If a LED is connected to GPIO17 you should see the following pattern : ( `GPIO17 o---[Resistor / R1]----->LED|---o GND` \
+
+9.	HushMonkey is set to start on reboot, so reboot your Pi to verify that every thing works.
+
+10.	If a LED is connected to GPIO17 you should see the following pattern : ( `GPIO17 o---[Resistor / R1]----->LED|---o GND` \
 Red/Green LED R1=100 Ω  /  Blue LED R1=24 Ω )
 
 | State | Pattern |
@@ -78,7 +88,7 @@ Red/Green LED R1=100 Ω  /  Blue LED R1=24 Ω )
 	Click save
 	Click Return to main page.
 
-5.	You should now see the calibrated sound pressure on the main display.
+5.	You should now see the calibrated sound pressure here and on the main display.
 
 ## Calibration: v0.3 and above:
 
