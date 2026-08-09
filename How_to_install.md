@@ -78,29 +78,29 @@ Red/Green LED R1=100 Ω  /  Blue LED R1=24 Ω )
 
 1.	Make sure HushMonky is running, USB-soundcard and microphone connected.
 
-2.	Turn on your sound calibrator device and adjust the gain on the soundcard to make sure the signal does not clip (leave some headroom)
+2.	Mount your microphone in the calibrator.
+   
+4.	Turn on your sound calibrator device and adjust the gain on the soundcard to make sure the signal does not clip (leave some headroom)
 
-3.	Mount your microphone in the calibrator.
-
-4.	In HushMonkey, click Calibrate.
+5.	In HushMonkey, click Calibrate.
 	Click the button that matches your calibrator (ie. if using a 94dB calibrator, click "Start 94 dB")
 	Wait for calibration to finish
 	Click save
 	Click Return to main page.
 
-5.	You should now see the calibrated sound pressure here and on the main display.
+6.	You should now see the calibrated sound pressure here and on the main display.
 
 ## Calibration: v0.3 and above:
 
 1.	Make sure HushMonky is running, USB-soundcard and microphone connected.
 
-2.	Turn on your sound calibrator device and adjust the gain on the soundcard to make sure the signal does not clip (leave some headroom)
+2.	Mount your microphone in the calibrator.
+   
+4.	Turn on your sound calibrator device and adjust the gain on the soundcard to make sure the signal does not clip (leave some headroom)
 
-3.	Mount your microphone in the calibrator.
+5.	Click on the "Setup"-tab
 
-4.	Click on the "Setup"-tab
-
-5.	Click the button that matches your calibrator (ie. if using a 94dB calibrator, click "Start 94 dB")
+6.	Click the button that matches your calibrator (ie. if using a 94dB calibrator, click "Start 94 dB")
 	Wait for calibration to finish
 	Click save
 
@@ -110,9 +110,9 @@ Red/Green LED R1=100 Ω  /  Blue LED R1=24 Ω )
 
 install.sh takes care of dependencies, deployment of software and creation of services.
 
-#### Usage:
-	Install/activate a version  : ```./install.sh [version]```  
-	Reactivate the previously active version : ```./install.sh --rollback```
+#### Usage: 
+- Install/activate a version : ```./install.sh [version]```	
+- Reactivate the previously active version : ```./install.sh --rollback```
 
  > **After install/upgrade/rollback please reboot and refresh browser to make sure backend and frontend are running the same version**
 
