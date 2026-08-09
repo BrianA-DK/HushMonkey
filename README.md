@@ -20,7 +20,7 @@ Check out the [Cheat Sheets](https://github.com/BrianA-DK/HushMonkey/tree/main/C
 
 **Hidden trick: On the LAF-view. Double-click inside each of the 3 LAF-fields to reset Max-value.**
 
-![LAF view](https://github.com/BrianA-DK/HushMonkey/blob/main/images/lafview.png)
+![LAF view](https://github.com/BrianA-DK/HushMonkey/blob/main/images/lafview2.png)
 
 
 ## Functions ##
