@@ -17,7 +17,7 @@ Welcome to the changelog. Below is an overview of all releases and updates organ
 * **WebSockets:** Moved GUI<->backend communication to sockets for streaming large data volumes efficiently.
 * **Error Logging:** Web-call added to pass information from the frontend directly to the backend log file when needed.
 * **Gunicorn Exit Handler:** New exit method to quit Gunicorn and pass a `returncode` to `wrapper.sh`.
-* *CPU Usage:* Remains around 60% on a Raspberry Pi 3 with delay analysis running.
+* *CPU Usage:* Remains around 60% on a Raspberry Pi3+ with delay analysis running.
 
 #### Advanced Audio & Measurement Analyses
 * **Waterfall Analysis:** Added directly to the main page.
@@ -28,7 +28,8 @@ Welcome to the changelog. Below is an overview of all releases and updates organ
 
 #### Hushbeat (Status LED on GPIO17)
 `hushbeat.sh` (Heartbeat LED showing status on GPIO17):
-`GPIO17 o---[Resistor]----->LED|---o GND`
+`GPIO17 o---[Resistor]----->LED|---o GND`  
+(Red/Green LED R=100 Ω / Blue LED R=24 Ω)
 
 | State | Pattern |
 | :--- | :--- |
