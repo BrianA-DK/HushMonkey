@@ -27,11 +27,15 @@ Check out the [Cheat Sheets](https://github.com/BrianA-DK/HushMonkey/tree/main/C
 
 ### Grumpy Gorilla-series (0.3): ###
 
+#### Genral ####
+- Fullscreen toggle by clicking on the icon in the upper right corner.
+
 #### LAF meter ####
 - Calculates A-weighted Fast Sound Level ($L_{\text{AF}}$) alongside integrated short-term ($L_{\text{Aeq,1m}}$) and long-term ($L_{\text{Aeq,10m}}$) equivalent continuous noise levels.
 - Noise Statistics & Trends: Computes statistical noise indicators ($L_{10}$ peak levels and $L_{90}$ ambient background noise) and measures 30-second trends (dB/min rate of change).
 - Limit Exceedance & ETA Prediction: Calculates estimated time remaining before reaching configured exposure limits ($L_{\text{Aeq,10m}}$ ETA) and triggers visual warnings when thresholds are approached or breached.
 - Waterfall Spectrogram: Displays a continuous, real-time 2D color-coded waterfall history of frequency levels over time.
+- Dark/Light mode toggle by clicking on the Moon/Sun icon in the upper left corner
 
 #### Frequency & Spectrum Analysis (Spectrum Analyzer ) ####
 - 1/3-Octave Band RTA: Analyzes 30 standard IEC center frequencies (from 20 Hz to 16,000 Hz).
