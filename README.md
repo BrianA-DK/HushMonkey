@@ -1,6 +1,6 @@
 
 
-![Logot](https://github.com/BrianA-DK/HushMonkey/blob/main/0.3a/html/icon-192.png)
+![Logo](https://github.com/BrianA-DK/HushMonkey/blob/main/0.3a/html/icon-192.png)
 
 **There are 2 flavours of HushMonkey - Both designed to run on a Raspberry Pi 3+**
 - 0.2: A lightweight version that solved my most basic needs to monitor LAF during shows. Minimalistic and straight to the point.
@@ -19,6 +19,7 @@ Download `install.sh` and the folder with the version you want to use.
 Check out the [Cheat Sheets](https://github.com/BrianA-DK/HushMonkey/tree/main/Cheat%20Sheets) to get started on using Hush Monkey when setting up your PA.
 
 **Hidden trick: On the LAF-view. Double-click inside each of the 3 LAF-fields to reset Max-value.**
+
 
 ## Functions ##
 
