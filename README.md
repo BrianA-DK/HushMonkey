@@ -30,6 +30,8 @@ Check out the [Cheat Sheets](https://github.com/BrianA-DK/HushMonkey/tree/main/C
 
 #### Genral ####
 - Fullscreen toggle by clicking on the icon in the upper right corner.
+- Special case for iOS-devices (no fullscreen browser-mode):  
+*Save HushMonkey as a shotcut on iOS homescreen launches HushMonkey in fullscreen*
 
 #### LAF meter ####
 - Calculates A-weighted Fast Sound Level ($L_{\text{AF}}$) alongside integrated short-term ($L_{\text{Aeq,1m}}$) and long-term ($L_{\text{Aeq,10m}}$) equivalent continuous noise levels.
