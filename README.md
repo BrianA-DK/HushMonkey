@@ -18,7 +18,7 @@ Download `install.sh` and the folder with the version you want to use.
 ## How to use ##
 Check out the [Cheat Sheets](https://github.com/BrianA-DK/HushMonkey/tree/main/Cheat%20Sheets) to get started on using Hush Monkey when setting up your PA.
 
-**Hidden trick #1: On the LAF-view. Double-click inside each of the 3 LAF-fields to reset Max-value.**
+**Hidden trick #1: On the LAF-view. Double-click inside each of the 3 LAF-fields to reset Max-value.**  
 **Hidden trick #2: The divider-bars on the LAF page can be dragged to resize the 4 views.**
 
 ![LAF view](https://github.com/BrianA-DK/HushMonkey/blob/main/images/lafview2.png)
