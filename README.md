@@ -2,6 +2,7 @@
 
 ![Logo](https://github.com/BrianA-DK/HushMonkey/blob/main/0.3a/html/icon-192.png)
 
+# HushMonkey #
 **There are 2 flavours of HushMonkey - Both designed to run on a Raspberry Pi 3+**
 - 0.2: A lightweight version that solved my most basic needs to monitor LAF during shows. Minimalistic and straight to the point.
 - 0.3: "Open Sound Meter and SMAART" in a browser, almost... 😉 Just the features you actually need for 99% of the jobs where you setup a sound system and run a consistent level thru the show. .
